@@ -1,14 +1,21 @@
 import styled from "styled-components";
-
-const Hashtag = () => {
-  const handleHashBtnClick = () => {};
-
+interface HashtagProps {
+  onCategoryChange: (category: string) => void;
+  selectedCategory: string | null;
+}
+const Hashtag = ({ onCategoryChange, selectedCategory }: HashtagProps) => {
   const categories = ["공학", "자연", "예술", "인문/사회", "체육", "경영/경제"];
   return (
     <div className="flex justify-center items-center flex-wrap gap-4 mx-8">
       {categories.map(function (category) {
         return (
-          <TagBtn className="hover:bg-[#C5B5F7]" onClick={handleHashBtnClick}>
+          <TagBtn
+            key={category}
+            className={`hover:bg-[#C5B5F7] ${
+              selectedCategory === category ? "bg-[#C5B5F7]" : ""
+            }`}
+            onClick={() => onCategoryChange(category)}
+          >
             <p className="">#{category}</p>
           </TagBtn>
         );
