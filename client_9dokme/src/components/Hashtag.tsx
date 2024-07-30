@@ -4,7 +4,15 @@ interface HashtagProps {
   selectedCategory: string | null;
 }
 const Hashtag = ({ onCategoryChange, selectedCategory }: HashtagProps) => {
-  const categories = ["공학", "자연", "예술", "인문/사회", "체육", "경영/경제"];
+  const categories = [
+    "전체보기",
+    "공학",
+    "자연",
+    "예술",
+    "인문/사회",
+    "체육",
+    "경영/경제",
+  ];
   return (
     <div className="flex justify-center items-center flex-wrap gap-4 mx-8">
       {categories.map(function (category) {
@@ -16,7 +24,10 @@ const Hashtag = ({ onCategoryChange, selectedCategory }: HashtagProps) => {
             }`}
             onClick={() => onCategoryChange(category)}
           >
-            <p className="">#{category}</p>
+            <p className="">
+              {category === "전체보기" ? "" : "#"}
+              {category}
+            </p>
           </TagBtn>
         );
       })}
