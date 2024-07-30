@@ -22,7 +22,7 @@ const images: { [key: string]: string } = {
 };
 
 const Main = () => {
-  const [category, setCategory] = useState<string | null>(null);
+  const [category, setCategory] = useState<string>("전체보기");
   const handleHashBtnClick = (newCategory: string) => {
     setCategory(newCategory);
   };
@@ -55,12 +55,21 @@ const Main = () => {
                   category === "전체보기" || book.bookCategory === category
               )
               .map((book: Book) => (
-                <img
-                  className="w-[10vw] m-[2vw] rounded-lg"
-                  key={book.bookId}
-                  src={images[book.bookUrl]}
-                  alt={book.bookTitle}
-                />
+                <div className="flex flex-col items-center align-center">
+                  <img
+                    className="w-[10vw] m-[2vw] rounded-lg text-center"
+                    key={book.bookId}
+                    src={images[book.bookUrl]}
+                    alt={book.bookTitle}
+                  />
+                  <div className="text-sm font-medium w=[5vw] text-center">
+                    [
+                    {book.bookTitle.length > 11
+                      ? book.bookTitle.slice(0, 11) + "..."
+                      : book.bookTitle}
+                    ]
+                  </div>
+                </div>
               ))}
           </div>
         </div>
