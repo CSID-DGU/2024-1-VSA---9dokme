@@ -11,6 +11,7 @@ module.exports = {
         customColor: "#C5B5F7",
         customColor2: "#F3F5FF",
         submitColor: "#2519B2",
+        purple: "#ddd6fe",
         customGradient: {
           start: "#918FFF", // 0% 위치의 색상
           midStart: "#5956FF", // 45% 위치의 색상
@@ -18,6 +19,8 @@ module.exports = {
           endStart: "#3431FF", // 79% 위치의 색상
           end: "#0011FF", // 100% 위치의 색상
         },
+        customGradient2: "linear-gradient(to right, #86fde8, #acb6e5)",
+        purple2: "#C5B5F7",
       },
       opacity: {
         20: "0.2",
