@@ -21,7 +21,7 @@ const Landing = () => {
 
 const Div = styled.div`
   background: radial-gradient(
-    circle at 10% 20%,
+    circle at 40% 40%,
     rgb(163, 175, 243) 0%,
     rgb(220, 182, 232) 100.2%
   );

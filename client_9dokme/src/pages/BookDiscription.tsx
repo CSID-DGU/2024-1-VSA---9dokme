@@ -1,9 +1,16 @@
 import styled from "styled-components";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import book1 from "../images/books/book1.png";
 import books from "../json/BookDetail.json";
 import { BookDetailType, Books } from "../json/BookDetailType";
 const BookDetail = () => {
+  const navigate = useNavigate();
+  const handleImgClick = (bookId: string | undefined) => {
+    const book = books.books.find(
+      (b: BookDetailType) => String(b.bookId) === String(bookId)
+    );
+    navigate(`/api/view/${bookId}`, { state: { book } });
+  };
   const { bookId } = useParams<{ bookId: string }>();
   const book = books.books.find(
     (b: BookDetailType) => String(b.bookId) === String(bookId)
@@ -37,11 +44,14 @@ const BookDetail = () => {
         </div>
       </div>
       <div className="w-screen h-[35%] bg-customColor2 flex justify-between pt-20">
-        <button className="border-xl bg-submitColor w-[25vw] h-[3.5vw] rounded-lg text-white font-semibold text-[1.5vw] ml-20 box-border">
-          제출하기
+        <button
+          onClick={() => handleImgClick(bookId)}
+          className="cursor-pointer border-xl bg-submitColor w-[29vw] h-[4vw] rounded-lg text-white font-semibold text-[1.5vw] ml-20 box-border"
+        >
+          PDF 보러가기
         </button>
-        <GradientDiv className="border-xl bg-customGradient w-[25vw] h-[3.5vw] rounded-lg text-white font-semibold text-[1.5vw] mr-20 box-border">
-          조회하기
+        <GradientDiv className="border-xl bg-customGradient w-[29vw] h-[4vw] rounded-lg text-white font-semibold text-[1.5vw] mr-20 box-border">
+          나의 책갈피에 추가하기
         </GradientDiv>
       </div>
     </div>
@@ -78,5 +88,6 @@ const GradientDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 `;
 export default BookDetail;

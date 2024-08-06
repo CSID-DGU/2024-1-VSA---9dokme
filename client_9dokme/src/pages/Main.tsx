@@ -60,7 +60,7 @@ const Main = () => {
   }, [category]);
   const bookList: Book[] = bookData.bookData;
   return (
-    <div className="w-screen h-full bg-customColor bg-opacity-20">
+    <div className="w-screen h-[100%] bg-customColor bg-opacity-20">
       <SlidingBanner />
       <div className="w-screen h-screen flex flex-col">
         <div className="m-[2vw] text-[1.2vw]">
