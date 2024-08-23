@@ -44,7 +44,7 @@ const Sidebanner = () => {
   const handleLogout = async (): Promise<void> => {
     try {
       // API 호출
-      const response = await API.get("/api/logout");
+      const response = await API.get("/logout");
       alert("로그아웃되었습니다.");
       navigate("/");
 
