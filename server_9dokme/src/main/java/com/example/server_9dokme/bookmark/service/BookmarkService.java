@@ -51,8 +51,8 @@ public class BookmarkService {
 
     @Transactional
     public BookmarkResponse unmark(BookUnMarkRequest request) {
-        Member member = memberService.getCurrentMember();
-        Book book = bookService.findById(request.bookId()).orElseThrow();
+        Member member = memberRepository.findByMemberId(request.memberId());
+        Book book = bookRepository.findByBookId(request.bookId());
 
         Bookmark bookmark = bookmarkRepository.findByBookAndMember(book, member)
                 .orElseThrow(() -> new BookmarkException(ErrorMessage.NOT_FOUND_BOOKMARK));
