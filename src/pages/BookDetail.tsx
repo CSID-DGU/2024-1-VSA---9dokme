@@ -49,46 +49,45 @@ const BookDetail = () => {
       try {
         const bookData = await fetchBookDetail(bookId);
         setBook(bookData);
-      } catch (error) {
-        // Error is already handled in fetchBookDetail
-      }
+        console.log("bookData: ", bookData);
+      } catch (error) {}
     };
 
     fetchData();
   }, [bookId]);
 
-  //북마크 추가하기
-  const handleAddBookmark = async () => {
+  const handleBookmarkBtn = async () => {
     try {
-      const response = await axios.post(`${BASE_URL}/api/bookmark`, {
-        params: {
-          BookId: book?.bookId,
-          memberId: memberId,
-        },
-      });
+      console.log(bookId);
+      await axios.post(
+        `${BASE_URL}/api/bookmark?BookId=${bookId}&memberId=${memberId}`
+      );
+      message.success("북마크에 추가되었습니다!");
 
-      const { content } = response.data;
-      alert(`${book?.title}: 도서가 북마크에 추가되었습니다:)`);
-      console.log("Fetched content: ", content);
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
     } catch (error) {
-      console.error("Failed to fetch books", error);
+      console.error("Error bookmarking the book:", error);
+      message.error("이미 북마크에 등록되었습니다.");
     }
   };
 
-  //북마크 삭제하기
   const handleDeleteBookmark = async () => {
     try {
-      const response = await axios.delete(`${BASE_URL}/api/bookmark`, {
-        params: { memberId: memberId },
-        data: { bookId: book?.bookId },
-      });
+      const response = await axios.delete(
+        `${BASE_URL}/api/bookmark?bookId=${bookId}&memberId=${memberId}`
+      );
 
       if (response.status === 200) {
-        alert(`${book?.title}: 도서가 북마크 취소되었습니다:)`);
-        console.log("Bookmark removed successfully:", response.data);
+        message.success("북마크가 취소되었습니다 :)");
+
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
       }
     } catch (error) {
-      console.error("Failed to remove bookmark", error);
+      message.error("오류가 발생했습니다.");
     }
   };
 
@@ -107,11 +106,13 @@ const BookDetail = () => {
           </div>
           <Divider style={{ borderColor: "#cacaca" }} />
           <ButtonContainer>
-            <GradientButton onClick={() => navigate(`/view/${bookId}`)}>
+            <GradientButton
+              onClick={() => navigate(`/view/${bookId}`, { state: { book } })}
+            >
               PDF 보러가기
             </GradientButton>
             {!book.marked ? (
-              <GradientButton onClick={() => handleAddBookmark()}>
+              <GradientButton onClick={() => handleBookmarkBtn()}>
                 책갈피에 추가하기
               </GradientButton>
             ) : (

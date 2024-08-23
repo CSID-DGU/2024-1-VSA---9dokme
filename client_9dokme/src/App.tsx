@@ -11,11 +11,16 @@ import LoginLoading from "./pages/LoginLoading";
 import MyArticle from "./pages/MyArticle";
 import BookDetail from "./pages/BookDetail";
 
+const useremail = sessionStorage.getItem("email");
+
 function App() {
   return (
     <Routes>
+      <Route path="/admin/adminPdf/" element={<AdminPDF />} />
+      <Route path="/mainPage/" element={<Main />} />
       <Route path="/" element={<Landing />} />
       <Route path="/mainPage/" element={<Main />} />
+
       {/* <Route path="/bookdetail/:bookId/" element={<BookDiscription />} /> */}
       <Route path="/bookdetail/:bookId/" element={<BookDetail />} />
       <Route path="/view/:bookId/" element={<PdfViewer />} />
