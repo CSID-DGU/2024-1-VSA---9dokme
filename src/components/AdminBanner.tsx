@@ -20,9 +20,9 @@ const AdminBanner = () => {
   };
   useEffect(() => {
     const pathToKeyMap: { [key: string]: string | undefined } = {
-      "/api/admin/adminPdf": "adminpdf",
-      "/api/admin/adminUser": "adminuser",
-      "/api/admin/adminQboard": "adminqboard",
+      "/admin/adminPdf": "adminpdf",
+      "/admin/adminUser": "adminuser",
+      "/admin/adminQboard": "adminqboard",
     };
     const currentKey = pathToKeyMap[location.pathname];
     if (currentKey) {
@@ -36,7 +36,7 @@ const AdminBanner = () => {
   const handleLogout = async (): Promise<void> => {
     try {
       // API 호출
-      const response = await API.get("/api/logout");
+      const response = await API.get("/logout");
       alert("로그아웃되었습니다.");
       navigate("/");
 
@@ -71,22 +71,20 @@ const AdminBanner = () => {
               text="PDF 관리"
               icon={pdf}
               isActive={activeBtn === "adminpdf"}
-              onClick={() => handleNavigate("/api/admin/adminPdf", "adminpdf")}
+              onClick={() => handleNavigate("/admin/adminPdf", "adminpdf")}
             />
             <NavBarBtn
               text="유저정보 관리"
               icon={user}
               isActive={activeBtn === "adminuser"}
-              onClick={() =>
-                handleNavigate("/api/admin/adminUser", "adminuser")
-              }
+              onClick={() => handleNavigate("/admin/adminUser", "adminuser")}
             />
             <NavBarBtn
               text="문의게시판 관리"
               icon={qboard}
               isActive={activeBtn === "adminqboard"}
               onClick={() =>
-                handleNavigate("/api/admin/adminQboard", "adminqboard")
+                handleNavigate("/admin/adminQboard", "adminqboard")
               }
             />
             <NavBarBtn
