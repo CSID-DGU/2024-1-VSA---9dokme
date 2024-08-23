@@ -2,7 +2,7 @@
 
 <h1> 9DokMe </h1>
 
-<img width="550px" src="https://github.com/CSID-DGU/2024-1-VSA-9dokme-T04/blob/develop/Data/books/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202024-08-23%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%201.32.09.png?raw=true"  alt="서비스대표-이미지" />
+<img width="550px" src="https://github.com/CSID-DGU/2024-1-VSA-9dokme-T04/blob/develop/client/Data/books/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202024-08-23%20%EC%98%A4%ED%9B%84%201.32.09.png?raw=true"  alt="서비스대표-이미지" />
 <div>대학생을 위한 전공책 PDF 구독 서비스</div>
 
 </div>
@@ -13,28 +13,28 @@
     <tr align="center">
       <td style="min-width: 150px;">
             <a href="https://github.com/bbabbi">
-              <img src="https://github.com/CSID-DGU/2024-1-VSA-9dokme-T04/blob/develop/Data/Github%20Profile/Chaeyoung%20Moon.jpeg?raw=true" width="200" alt="깃허브계정-프로필사진"/>
+              <img src="https://github.com/CSID-DGU/2024-1-VSA-9dokme-T04/blob/develop/client/Data/Github%20Profile/Chaeyoung%20Moon.jpeg?raw=true" width="200" alt="깃허브계정-프로필사진"/>
               <br />
               <b>Chaeyoung Moon</b>
             </a>
         </td>
       <td style="min-width: 150px;">
             <a href="https://github.com/rlaalsghks8">
-              <img src="https://github.com/CSID-DGU/2024-1-VSA-9dokme-T04/blob/develop/Data/Github%20Profile/Minhwan%20Kim.jpeg?raw=true" width="200" alt="깃허브계정-프로필사진">
+              <img src="https://github.com/CSID-DGU/2024-1-VSA-9dokme-T04/blob/develop/client/Data/Github%20Profile/Heeseo%20Kim.jpeg?raw=true" width="200" alt="깃허브계정-프로필사진">
               <br />
               <b>rlaalsghks8</b>
             </a>
         </td>
       <td style="min-width: 150px;">
             <a href="https://github.com/chungchae">
-              <img src="https://github.com/CSID-DGU/2024-1-VSA-9dokme-T04/blob/develop/Data/Github%20Profile/Heeseo%20Kim.jpeg?raw=true" width="200" alt="깃허브계정-프로필사진">
+              <img src="https://github.com/CSID-DGU/2024-1-VSA-9dokme-T04/blob/develop/client/Data/Github%20Profile/Minhwan%20Kim.jpeg?raw=true" width="200" alt="깃허브계정-프로필사진">
               <br />
               <b>Heeseo Kim</b>
             </a>
         </td>
       <td style="min-width: 150px;">
             <a href="https://github.com/seulgit02">
-              <img src="https://github.com/CSID-DGU/2024-1-VSA-9dokme-T04/blob/develop/Data/Github%20Profile/Seulgi%20Baek.jpeg?raw=true" width="200" alt="깃허브계정-프로필사진">
+              <img src="https://github.com/CSID-DGU/2024-1-VSA-9dokme-T04/blob/develop/client/Data/Github%20Profile/Seulgi%20Baek.jpeg?raw=true" width="200" alt="깃허브계정-프로필사진">
               <br />
               <b>백슬기</b>
             </a>
@@ -88,8 +88,10 @@
 <h2> ⭐️ 9DokMe 주요 기능 </h2>
 
 <h3> 1️⃣ 교재 별 질문 커뮤니티 </h3>
-<img src="https://github.com/CSID-DGU/2024-1-VSA-9dokme-T04/blob/develop/Data/books/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202024-08-23%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%201.32.09.png?raw=true"
-alt="기능2-대표이미지" />
+<img src="https://github.com/CSID-DGU/2024-1-VSA-9dokme-T04/blob/develop/data/serviceImage/community.png?raw=true"
+alt="기능1-대표이미지(1)" />
+<img src="https://github.com/CSID-DGU/2024-1-VSA-9dokme-T04/blob/develop/data/serviceImage/community3.png?raw=true"
+alt="기능1-대표이미지(2)" />
 <div >
 <br/>
 <strong> 교재 열람 시 질문 커뮤니티 기능 사용 가능 </strong>   <br/>
@@ -99,8 +101,10 @@ alt="기능2-대표이미지" />
 </div>
 
 <h3> 2️⃣ 정기 결제 및 구독 갱신 </h3>
-<img src="https://github.com/CSID-DGU/2024-1-VSA-9dokme-T04/blob/develop/Data/books/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202024-08-23%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%201.32.09.png?raw=true"
-alt="기능2-대표이미지" />
+<img src="https://github.com/CSID-DGU/2024-1-VSA-9dokme-T04/blob/develop/data/serviceImage/payment.png?raw=true"
+alt="기능2-대표이미지(1)" />
+<img src="https://github.com/CSID-DGU/2024-1-VSA-9dokme-T04/blob/develop/data/serviceImage/payment2.png?raw=true"
+alt="기능2-대표이미지(2)" />
 <div >
 <br/>
 <strong> PG사 API 통합 구현 및 Spring Batch를 활용한 결제 및 구독 갱신  </strong>   <br/>
@@ -112,7 +116,7 @@ alt="기능2-대표이미지" />
 </div>
 
 <h3> 3️⃣ ChatGPT를 활용한 챗봇 </h3>
-<img src="https://github.com/CSID-DGU/2024-1-VSA-9dokme-T04/blob/develop/Data/books/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202024-08-23%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%201.32.09.png?raw=true"
+<img src="https://github.com/CSID-DGU/2024-1-VSA-9dokme-T04/blob/develop/data/serviceImage/chatGPT.png?raw=true"
   alt="기능3-대표이미지" />
 <div >
 <br/>
