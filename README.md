@@ -2,7 +2,7 @@
 
 <h1> 9DokMe </h1>
 
-<img width="550px" src="https://github.com/CSID-DGU/2024-1-VSA-9dokme-T04/blob/develop/client/Data/books/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202024-08-23%20%EC%98%A4%ED%9B%84%201.32.09.png?raw=true"  alt="서비스대표-이미지" />
+<img width="550px" src="https://github.com/CSID-DGU/2024-1-VSA-9dokme-T04/blob/develop/data/books/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202024-08-23%20%EC%98%A4%ED%9B%84%201.32.09.png?raw=true"  alt="서비스대표-이미지" />
 <div>대학생을 위한 전공책 PDF 구독 서비스</div>
 
 </div>
@@ -13,28 +13,28 @@
     <tr align="center">
       <td style="min-width: 150px;">
             <a href="https://github.com/bbabbi">
-              <img src="https://github.com/CSID-DGU/2024-1-VSA-9dokme-T04/blob/develop/client/Data/Github%20Profile/Chaeyoung%20Moon.jpeg?raw=true" width="200" alt="깃허브계정-프로필사진"/>
+              <img src="https://github.com/CSID-DGU/2024-1-VSA-9dokme-T04/blob/develop/data/githubProfile/Chaeyoung%20Moon.jpeg?raw=true" width="200" alt="깃허브계정-프로필사진"/>
               <br />
               <b>Chaeyoung Moon</b>
             </a>
         </td>
       <td style="min-width: 150px;">
             <a href="https://github.com/rlaalsghks8">
-              <img src="https://github.com/CSID-DGU/2024-1-VSA-9dokme-T04/blob/develop/client/Data/Github%20Profile/Heeseo%20Kim.jpeg?raw=true" width="200" alt="깃허브계정-프로필사진">
+              <img src="https://github.com/CSID-DGU/2024-1-VSA-9dokme-T04/blob/develop/data/githubProfile/Minhwan%20Kim.jpeg?raw=true" width="200" alt="깃허브계정-프로필사진">
               <br />
               <b>rlaalsghks8</b>
             </a>
         </td>
       <td style="min-width: 150px;">
             <a href="https://github.com/chungchae">
-              <img src="https://github.com/CSID-DGU/2024-1-VSA-9dokme-T04/blob/develop/client/Data/Github%20Profile/Minhwan%20Kim.jpeg?raw=true" width="200" alt="깃허브계정-프로필사진">
+              <img src="https://github.com/CSID-DGU/2024-1-VSA-9dokme-T04/blob/develop/data/githubProfile/Heeseo%20Kim.jpeg?raw=true" width="200" alt="깃허브계정-프로필사진">
               <br />
               <b>Heeseo Kim</b>
             </a>
         </td>
       <td style="min-width: 150px;">
             <a href="https://github.com/seulgit02">
-              <img src="https://github.com/CSID-DGU/2024-1-VSA-9dokme-T04/blob/develop/client/Data/Github%20Profile/Seulgi%20Baek.jpeg?raw=true" width="200" alt="깃허브계정-프로필사진">
+              <img src="https://github.com/CSID-DGU/2024-1-VSA-9dokme-T04/blob/develop/data/githubProfile/Seulgi%20Baek.jpeg?raw=true" width="200" alt="깃허브계정-프로필사진">
               <br />
               <b>백슬기</b>
             </a>
@@ -124,6 +124,8 @@ alt="기능2-대표이미지(2)" />
 - 복잡한 개념이나 용어에 대한 설명을 요청할 때, 챗봇을 통한 즉각적인 정보 습득 가능
 </div>
 
+<br />
+
 <h2> 🛠 기술스택 </h2>
 
 |  **Category**   |              **Stack**              |
@@ -139,8 +141,6 @@ alt="기능2-대표이미지(2)" />
 
 <h2>  📄 컨벤션 및 브랜치 전략 </h2>
 
-<br/>
-
 <h3>  🖋️ 커밋 컨벤션 </h3>
 
 |    **Type**     |             **Description**              |
@@ -154,7 +154,6 @@ alt="기능2-대표이미지(2)" />
 | `[REFACTOR]` |                파일 이름 변경시                 |
 | `[SETTING]` |                 프로젝트 세팅                  |
 
-<br />
 
 <h3>  🖋️ 브랜치 전략 </h3>
 
@@ -162,6 +161,5 @@ Git-Flow
 
 **[브랜치명 예시]** <br />
 `ex) feature/#3-login` <br />
-어떤건지/#이슈번호-기능
 
 <h2>  📁 폴더 구조 </h2>
