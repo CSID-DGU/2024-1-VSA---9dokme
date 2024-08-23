@@ -26,7 +26,7 @@ public class BookmarkController {
 
     // 게시글 북마크 취소
     @DeleteMapping
-    public BookmarkResponse removeBookmark(@RequestBody BookUnMarkRequest bookUnMarkRequest) {
-        return bookmarkService.unmark(bookUnMarkRequest);
+    public BookmarkResponse removeBookmark(@RequestParam Long bookId, @RequestParam Long memberId) {
+        return bookmarkService.unmark(new BookUnMarkRequest(bookId, memberId));
     }
 }
