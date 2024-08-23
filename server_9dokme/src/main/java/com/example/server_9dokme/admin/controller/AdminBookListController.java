@@ -29,13 +29,9 @@ public class AdminBookListController {
 
     @GetMapping("/admin/books")
     @Operation(description = "관리자 pdf 관리 리스트", summary = "관리자 pdf 수정 리스트 관리")
-    public ResponseEntity<List<AdminBookDto>> getAdminPdfList(@RequestParam(defaultValue = "") String search,
-                                                              HttpSession session){
-        String socialId = session.getAttribute("email").toString();
+    public ResponseEntity<List<AdminBookDto>> getAdminPdfList(@RequestParam(defaultValue = "") String search){
+//        String socialId = session.getAttribute("email").toString();
 
-        if(socialId ==null || socialId == "rlaalsghks8@naver.com"){
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "관리자 로그인 후 이용해주세요");
-        }
 
         List<AdminBookDto> dto =  adminBookListService.getBookList(search);
         if(dto.isEmpty()){

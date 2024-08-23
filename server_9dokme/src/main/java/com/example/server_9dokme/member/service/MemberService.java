@@ -72,7 +72,7 @@ public class MemberService {
 
         List<Advertisement> advertisementDtoList = advertisementRepository.findAll();
 
-        Pageable pageable = PageRequest.of(pageNo,4);
+        Pageable pageable = PageRequest.of(pageNo,8);
 
         Page<Book> bookPage;
 

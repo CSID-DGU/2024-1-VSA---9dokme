@@ -68,7 +68,7 @@ public class MemberController {
 
         session.setMaxInactiveInterval(60 * 60);
 
-        return SuccessResponse.success(String.valueOf(userInfo));
+        return SuccessResponse.success(String.valueOf(userInfo),member.getUserRole());
     }
 
     @GetMapping("/logout")
