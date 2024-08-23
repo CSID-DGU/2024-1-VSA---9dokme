@@ -1,7 +1,5 @@
 package com.example.server_9dokme.payment.controller;
 
-import com.example.server_9dokme.member.entity.Member;
-import com.example.server_9dokme.member.service.MemberService;
 import com.example.server_9dokme.payment.dto.PaymentRequest;
 import com.example.server_9dokme.payment.entity.PaymentType;
 import com.example.server_9dokme.payment.service.PaymentService;
@@ -18,11 +16,9 @@ import java.util.Date;
 public class PaymentController {
 
     private final PaymentService paymentService;
-    private final MemberService memberService;
 
-    public PaymentController(PaymentService paymentService, MemberService memberService) {
+    public PaymentController(PaymentService paymentService) {
         this.paymentService = paymentService;
-        this.memberService = memberService;
     }
 
     @Value("${iamport.merchant.code}")
@@ -35,16 +31,14 @@ public class PaymentController {
     @GetMapping("/payments")
     public String paymentPage(Model model) {
 
-        Member currentMember = memberService.getCurrentMember();
-
         PaymentRequest paymentRequest = new PaymentRequest(
                 "kakaopay",
                 "card",
                 "order_no_" + new Date().getTime(),
                 "9dokme 정기 결제",
                 9900,
-                currentMember.getSocialId(), // 사용자 이메일
-                currentMember.getNickName(), // 사용자 이름
+                "jenny.seulgi.baek@gmail.com",
+                "백슬기",
                 "010-5511-0021",
                 "서울특별시",
                 "123-456",
@@ -53,8 +47,8 @@ public class PaymentController {
         );
 
         // 사용자 정보를 모델에 추가
-        model.addAttribute("userEmail", currentMember.getSocialId());
-        model.addAttribute("userName", currentMember.getNickName());
+        model.addAttribute("userEmail", "jenny.seulgi.baek@gmail.com");
+        model.addAttribute("userName", "백슬기");
 
         model.addAttribute("paymentRequest", paymentRequest);
 
