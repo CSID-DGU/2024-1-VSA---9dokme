@@ -16,13 +16,11 @@ const useremail = sessionStorage.getItem("email");
 function App() {
   return (
     <Routes>
-      {useremail === "rlaalsghks8@naver.com" ? (
-        <Route path="/admin/adminPdf/" element={<AdminPDF />} />
-      ) : (
-        <Route path="/mainPage/" element={<Main />} />
-      )}
+      <Route path="/admin/adminPdf/" element={<AdminPDF />} />
+      <Route path="/mainPage/" element={<Main />} />
       <Route path="/" element={<Landing />} />
       <Route path="/mainPage/" element={<Main />} />
+
       {/* <Route path="/bookdetail/:bookId/" element={<BookDiscription />} /> */}
       <Route path="/bookdetail/:bookId/" element={<BookDetail />} />
       <Route path="/view/:bookId/" element={<PdfViewer />} />

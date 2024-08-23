@@ -46,7 +46,9 @@ const LoginLoading = () => {
         } else {
           console.error("Failed to parse nickname or email from message");
         }
-        navigate("/mainPage");
+        if (localStorage.getItem("memberId") === "6") {
+          navigate("/mainPage");
+        } else navigate("/mainPage");
       } catch (error) {
         console.error("Login failed:", error);
       }
