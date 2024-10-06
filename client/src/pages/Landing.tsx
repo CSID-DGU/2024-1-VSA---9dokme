@@ -14,10 +14,10 @@ const Landing = () => {
 
   return (
     <Div className="flex justify-center w-[100%]">
-      <img src={landingPage} className="w-[50%] " />
+      <img src={landingPage} className="w-[65%] md:w-[50%] " />
       <GradientDiv
         onClick={handleKakaoButtonClick}
-        className="w-[40%] fixed bottom-[5%] bg-cumtomColor bg-"
+        className="w-[55%] min-h-[4%] md:w-[40%] fixed bottom-[5%] bg-cumtomColor"
       >
         로그인하기
       </GradientDiv>

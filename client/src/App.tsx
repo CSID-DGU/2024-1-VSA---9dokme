@@ -10,23 +10,25 @@ import AdminQboard from "./pages/AdminQboard";
 import LoginLoading from "./pages/LoginLoading";
 import MyArticle from "./pages/MyArticle";
 import BookDetail from "./pages/BookDetail";
-
+import { BrowserView, MobileView } from "react-device-detect";
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Landing />} />
-      <Route path="/mainPage/" element={<Main />} />
-      {/* <Route path="/bookdetail/:bookId/" element={<BookDiscription />} /> */}
-      <Route path="/bookdetail/:bookId/" element={<BookDetail />} />
-      <Route path="/view/:bookId/" element={<PdfViewer />} />
-      <Route path="/queryboard/" element={<QueryBoard />} />
-      <Route path="/mypage/" element={<MyPage />} />
-      <Route path="/admin/adminPdf/" element={<AdminPDF />} />
-      <Route path="/admin/adminUser/" element={<AdminUser />} />
-      <Route path="/admin/adminQboard/" element={<AdminQboard />} />
-      <Route path="/login/oauth2/callback/kakao" element={<LoginLoading />} />
-      <Route path="/myarticle/" element={<MyArticle />} />
-    </Routes>
+    <>
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/mainPage/" element={<Main />} />
+        {/* <Route path="/bookdetail/:bookId/" element={<BookDiscription />} /> */}
+        <Route path="/bookdetail/:bookId/" element={<BookDetail />} />
+        <Route path="/view/:bookId/" element={<PdfViewer />} />
+        <Route path="/queryboard/" element={<QueryBoard />} />
+        <Route path="/mypage/" element={<MyPage />} />
+        <Route path="/admin/adminPdf/" element={<AdminPDF />} />
+        <Route path="/admin/adminUser/" element={<AdminUser />} />
+        <Route path="/admin/adminQboard/" element={<AdminQboard />} />
+        <Route path="/login/oauth2/callback/kakao" element={<LoginLoading />} />
+        <Route path="/myarticle/" element={<MyArticle />} />
+      </Routes>
+    </>
   );
 }
 
