@@ -10,7 +10,7 @@ import AdminQboard from "./pages/AdminQboard";
 import LoginLoading from "./pages/LoginLoading";
 import MyArticle from "./pages/MyArticle";
 import BookDetail from "./pages/BookDetail";
-import { BrowserView, MobileView } from "react-device-detect";
+// import { BrowserView, MobileView } from "react-device-detect";
 function App() {
   return (
     <>

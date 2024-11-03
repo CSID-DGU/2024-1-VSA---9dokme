@@ -22,7 +22,7 @@ public class Member extends BaseEntity {
     @OneToOne(mappedBy = "member", cascade = CascadeType.ALL)
     private Subscribe subscribe;
 
-    private Integer userRole;
+    private String userRole;
 
     private String password;
 
@@ -44,7 +44,7 @@ public class Member extends BaseEntity {
     private String billingKey;
 
     @Builder
-    public Member(Long subscribeId, Integer userRole, String password, String nickName, String socialId, SocialType socialType, String customerKey, String authKey, String billingKey) {
+    public Member(Long subscribeId, String userRole, String password, String nickName, String socialId, SocialType socialType, String customerKey, String authKey, String billingKey) {
         this.subscribeId = subscribeId;
         this.userRole = userRole;
         this.password = password;
