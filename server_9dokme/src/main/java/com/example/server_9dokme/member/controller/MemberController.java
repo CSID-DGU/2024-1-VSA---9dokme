@@ -1,5 +1,6 @@
 package com.example.server_9dokme.member.controller;
 
+import com.example.server_9dokme.common.FindLoginMember;
 import com.example.server_9dokme.common.dto.BaseResponse;
 import com.example.server_9dokme.common.dto.ErrorResponse;
 import com.example.server_9dokme.common.dto.SuccessResponse;
@@ -95,15 +96,18 @@ public class MemberController {
     @Operation(summary = "메인 페이지", description = "메인페이지, 페이지 네이션 적용")
     public BaseResponse mainPage(
             @RequestParam(required = false, defaultValue = "", value = "category") String category,
-            @RequestParam(required = false, defaultValue = "0", value = "page") int pageNo,
-            @RequestHeader("Authorization") String token
+            @RequestParam(required = false, defaultValue = "0", value = "page") int pageNo
     ) {
-        if (!jwtUtil.validateToken(token)) {
-            return ErrorResponse.of("토큰이 유효하지 않습니다", HttpStatus.UNAUTHORIZED);
-        }
+        String memberEmail = FindLoginMember.getCurrentUserId();
+        log.info("email={}", memberEmail);
+        //String token = tokenHeader.replace("Bearer ", "");
 
-        String socialId = jwtUtil.getEmailFromToken(token);
-        MainPageDto mainPageDto = memberService.getMainPage(category, pageNo, socialId);
+//        if (!jwtUtil.validateToken(token)) {
+//            return ErrorResponse.of("토큰이 유효하지 않습니다", HttpStatus.UNAUTHORIZED);
+//        }
+
+        //String socialId = jwtUtil.getEmailFromToken(token);
+        MainPageDto mainPageDto = memberService.getMainPage(category, pageNo, memberEmail);
 
         return SuccessResponse.success("메인 페이지", mainPageDto);
     }

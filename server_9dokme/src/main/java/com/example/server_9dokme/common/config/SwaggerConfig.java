@@ -1,6 +1,9 @@
 package com.example.server_9dokme.common.config;
 
 
+import io.swagger.v3.oas.models.Components;
+import io.swagger.v3.oas.models.security.SecurityRequirement;
+import io.swagger.v3.oas.models.security.SecurityScheme;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import io.swagger.v3.oas.models.OpenAPI;
@@ -21,12 +24,21 @@ public class SwaggerConfig {
 
         // 서버 URL을 명시적으로 HTTPS로 설정
         Server server = new Server()
-                .url("https://www.9dokme.p-e.kr")
+                .url("http://localhost:8080")
                 .description("배포된 서버");
+
+        SecurityScheme bearerAuth = new SecurityScheme()
+                .type(SecurityScheme.Type.HTTP)
+                .scheme("bearer")
+                .bearerFormat("JWT");
+
+        SecurityRequirement securityRequirement = new SecurityRequirement()
+                .addList("bearerAuth");
 
         return new OpenAPI()
                 .info(info)
-                .servers(List.of(server)); // 서버 리스트에 추가
+                .servers(List.of(server)).components(new Components().addSecuritySchemes("bearerAuth", bearerAuth))
+                .addSecurityItem(securityRequirement);
     }
 }
 
