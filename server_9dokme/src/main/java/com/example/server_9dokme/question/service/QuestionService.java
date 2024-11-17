@@ -1,5 +1,6 @@
 package com.example.server_9dokme.question.service;
 
+import ch.qos.logback.core.status.ErrorStatus;
 import com.example.server_9dokme.book.dto.response.BookListDto;
 import com.example.server_9dokme.book.repository.BookRepository;
 import com.example.server_9dokme.member.repository.MemberRepository;
@@ -22,7 +23,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -137,7 +140,15 @@ public class QuestionService{
     }
 
     @Transactional
-    public void deleteComment(Integer questionId, Integer commentId){
+    public void deleteComment(Integer questionId, Integer commentId,String email){
+
+
+        String authorizedDelete = commentRepository.findByCommentId(commentId).get().getEmail();
+
+        if(authorizedDelete.equals(email)){
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN,"삭제 권한이 없습니다");
+        }
+
 
         commentRepository.deleteCommentByQuestion_QuestionIdAndCommentId(questionId,commentId);
     }

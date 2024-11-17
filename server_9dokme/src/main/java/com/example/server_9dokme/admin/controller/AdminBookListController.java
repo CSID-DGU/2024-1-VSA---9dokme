@@ -1,4 +1,4 @@
-package com.example.server_9dokme.admin.controller;
+package com.example.server_9dokme.Admin.controller;
 
 import com.example.server_9dokme.admin.dto.AdminBookDto;
 import com.example.server_9dokme.admin.service.AdminBookListService;

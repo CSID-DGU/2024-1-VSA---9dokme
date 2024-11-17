@@ -134,9 +134,11 @@ public class MemberController {
         return memberService.getMemberList(pageNo);
     }
 
-    @DeleteMapping("/admin/members/{memberId}")
+    @DeleteMapping("/admin/members")
     @Operation(summary = "멤버 삭제")
-    public ResponseEntity<Void> deleteInquire(@PathVariable Long memberId) {
+    public ResponseEntity<Void> deleteInquire() {
+        String memberEmail = FindLoginMember.getCurrentUserId();
+        Long memberId = memberRepository.findBySocialId(memberEmail).getMemberId();
         try {
             memberService.deleteMember(memberId);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -148,9 +150,10 @@ public class MemberController {
 
     @GetMapping("/myHistory")
     @Operation(summary = "나의 작성글")
-    public ResponseEntity<Page<PostWrittenDto>> getPostWritten( @RequestParam(required = false, defaultValue = "0", value = "page") int pageNo,
-                                                                Long memberId
+    public ResponseEntity<Page<PostWrittenDto>> getPostWritten( @RequestParam(required = false, defaultValue = "0", value = "page") int pageNo
     ){
+        String memberEmail = FindLoginMember.getCurrentUserId();
+        Long memberId = memberRepository.findBySocialId(memberEmail).getMemberId();
         Page<PostWrittenDto> listdto = memberService.getPostWrittenList(memberId,pageNo);
 
         if(listdto.isEmpty()){

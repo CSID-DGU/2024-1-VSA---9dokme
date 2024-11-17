@@ -7,6 +7,7 @@ import com.example.server_9dokme.book.entity.Book;
 import com.example.server_9dokme.book.message.ErrorMessage;
 import com.example.server_9dokme.book.repository.BookRepository;
 import com.example.server_9dokme.book.service.BookService;
+import com.example.server_9dokme.common.FindLoginMember;
 import com.example.server_9dokme.common.dto.BaseResponse;
 import com.example.server_9dokme.common.dto.ErrorResponse;
 import com.example.server_9dokme.common.dto.SuccessResponse;
@@ -41,8 +42,10 @@ public class BookController {
 
     @GetMapping("/books")
     @Operation(summary = "pdf 교재 상세조회", description = "pdf 교재 상세조회")
-    public ResponseEntity<BookCheckDto> getBookDetail(@RequestParam Long id,
-                                                      Long memberId) {
+    public ResponseEntity<BookCheckDto> getBookDetail(@RequestParam Long id) {
+
+        String memberEmail = FindLoginMember.getCurrentUserId();
+        Long memberId = memberRepository.findBySocialId(memberEmail).getMemberId();
 
         if (memberId == null) {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, "로그인 후 이용해주세요.");
@@ -59,30 +62,32 @@ public class BookController {
     @GetMapping("/mainpage/search")
     @Operation(summary = "pdf 교재 검색", description = "pdf 교재 검색 title 기반")
     public ResponseEntity<Page<BookDto>> searchBookPDF(@RequestParam(defaultValue = "") String title,
-                                                       @RequestParam(required = false, defaultValue = "0", value = "page") int pageNo,
-                                                       @RequestParam Long memberId) {
+                                                       @RequestParam(required = false, defaultValue = "0", value = "page") int pageNo) {
 
-//        Object currentMember = memberRepository.findByMemberId(memberId);
+        String memberEmail = FindLoginMember.getCurrentUserId();
+        Long memberId = memberRepository.findBySocialId(memberEmail).getMemberId();
+
         Page<BookDto> dto = bookService.searchBook(title,pageNo, memberId);
 
-//        if (currentMember == null) {
-//            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "로그인 후 이용해주세요.");
-//        }
-//        if(dto.isEmpty()==true){
-//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "찾을 수 없는 pdf 교재입니다.");
-//        }
-//
-//
+        if (memberEmail == null) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "로그인 후 이용해주세요.");
+        }
+        if(dto.isEmpty()==true){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "찾을 수 없는 pdf 교재입니다.");
+        }
+
+
         return ResponseEntity.ok(dto);
     }
 
     @Transactional
     @GetMapping("/view")
     @Operation(summary = "pdf 교재 웹뷰 조회", description = "pdf 교재 웹뷰 조회")
-    public ResponseEntity<BookWebViewDto> viewBookPDF(@RequestParam Long bookId,
-                                                      @RequestParam Long memberId) {
+    public ResponseEntity<BookWebViewDto> viewBookPDF(@RequestParam Long bookId) {
 
-        Member currentMember = memberRepository.findByMemberId(memberId);
+        String memberEmail = FindLoginMember.getCurrentUserId();
+        Member currentMember = memberRepository.findBySocialId(memberEmail);
+
 
         if (currentMember == null) {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, "로그인 후 이용해주세요.");
@@ -94,7 +99,7 @@ public class BookController {
 
         BookWebViewDto dto = bookService.bookWebView(bookId);
 
-        bookService.saveRentBook(bookId,currentMember.getSocialId());
+        bookService.saveRentBook(bookId,memberEmail);
 
         return ResponseEntity.ok(dto);
     }
@@ -103,8 +108,11 @@ public class BookController {
     @PutMapping("/view/{bookId}")
     @Operation(summary = "웹 뷰 조회 나가기", description = "웹 뷰 조회를 나가며 진행률 최신화(뒤로가기)")
     public ResponseEntity<String> quitViewBookPDF(@PathVariable Long bookId,
-                                            @RequestParam int lastPage,
-                                            Long memberId){
+                                            @RequestParam int lastPage){
+
+        String memberEmail = FindLoginMember.getCurrentUserId();
+        Long memberId = memberRepository.findBySocialId(memberEmail).getMemberId();
+
 
         if (memberId == null) {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, "로그인 후 이용해주세요.");
@@ -116,8 +124,15 @@ public class BookController {
     }
 
     @GetMapping("/mypage")
-    public MyPageDto mypage(@RequestParam Long memberId,
-                            @RequestParam(required = false, defaultValue = "0", value = "page") int pageNo){
+    public MyPageDto mypage(@RequestParam(required = false, defaultValue = "0", value = "page") int pageNo){
+
+        String memberEmail = FindLoginMember.getCurrentUserId();
+        Long memberId = memberRepository.findBySocialId(memberEmail).getMemberId();
+
+        if (memberId == null) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "로그인 후 이용해주세요.");
+        }
+
         return bookService.getMypageBookList(memberId, pageNo);
     }
 

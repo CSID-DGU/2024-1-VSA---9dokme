@@ -1,5 +1,7 @@
 package com.example.server_9dokme.question.controller;
 
+import com.example.server_9dokme.common.FindLoginMember;
+import com.example.server_9dokme.member.repository.MemberRepository;
 import com.example.server_9dokme.question.dto.request.CreateCommentDto;
 import com.example.server_9dokme.question.dto.request.CreateQuestionDto;
 import com.example.server_9dokme.question.dto.request.QuesitonRequestDto;
@@ -26,23 +28,45 @@ public class QuestionController {
 
     @Autowired
     private QuestionService questionService;
+    @Autowired
+    private MemberRepository memberRepository;
 
     @GetMapping("/questionlist/{bookId}")
     public QuestionListDto getQuestionList (@PathVariable Long bookId,
                                             @RequestParam(required = false) Integer chapter,
                                             @RequestParam(required = false) Integer bookPage) {
+
+        String memberEmail = FindLoginMember.getCurrentUserId();
+        Long memberId = memberRepository.findBySocialId(memberEmail).getMemberId();
+
+        if (memberId == null) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "로그인을 진행해주세요!");
+        }
+
         return questionService.getQuestionList(bookId, chapter, bookPage);
     }
 
     @GetMapping("/questiondetail/{questionId}")
     public QuestionDetailDto getQuestionList (@PathVariable int questionId ) {
+
+        String memberEmail = FindLoginMember.getCurrentUserId();
+        Long memberId = memberRepository.findBySocialId(memberEmail).getMemberId();
+
+        if (memberId == null) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "로그인을 진행해주세요!");
+        }
+
+
         return questionService.getQuestionDetail(questionId);
     }
+
     @PostMapping("/community/question/{bookId}")
     @Operation(summary = "질문글 올리기", description = "양식에 맞춰서 chapter,bookPage(pdf)페이지")
     public ResponseEntity<String> createQuestion(@PathVariable("bookId") Long bookId,
-                                                 @RequestBody CreateQuestionDto dto,
-                                                 Long memberId){
+                                                 @RequestBody CreateQuestionDto dto){
+
+        String memberEmail = FindLoginMember.getCurrentUserId();
+        Long memberId = memberRepository.findBySocialId(memberEmail).getMemberId();
 
         if (memberId == null) {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, "로그인을 진행해주세요!");
@@ -55,9 +79,10 @@ public class QuestionController {
     @PostMapping("/community/comment/{questionId}")
     @Operation(summary = "댓글 올리기", description = "댓글 작성")
     public ResponseEntity<String> createComment(@RequestBody CreateCommentDto dto,
-                                                @PathVariable("questionId") Integer questionId,
-                                                Long memberId){
+                                                @PathVariable("questionId") Integer questionId){
 
+        String memberEmail = FindLoginMember.getCurrentUserId();
+        Long memberId = memberRepository.findBySocialId(memberEmail).getMemberId();
 
         if (memberId == null) {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, "로그인을 진행해주세요!");
@@ -72,7 +97,15 @@ public class QuestionController {
     @Operation(summary = "댓글 삭제")
     public ResponseEntity<String> deleteComment(@PathVariable("questionNo") int questionNo,
                                                 @RequestParam Integer commentId){
-        questionService.deleteComment(questionNo,commentId);
+
+        String memberEmail = FindLoginMember.getCurrentUserId();
+
+        if (memberEmail == null) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "로그인을 진행해주세요!");
+        }
+
+
+        questionService.deleteComment(questionNo,commentId, memberEmail);
 
         return ResponseEntity.ok("댓글 삭제 성공");
     }

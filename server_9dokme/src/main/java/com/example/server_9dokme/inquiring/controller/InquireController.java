@@ -1,11 +1,13 @@
 package com.example.server_9dokme.inquiring.controller;
 
+import com.example.server_9dokme.common.FindLoginMember;
 import com.example.server_9dokme.common.dto.SuccessResponse;
 import com.example.server_9dokme.inquiring.dto.request.InquireRequestDto;
 import com.example.server_9dokme.inquiring.dto.response.InquireDto;
 import com.example.server_9dokme.inquiring.dto.response.InquireListDto;
 import com.example.server_9dokme.inquiring.entity.Inquire;
 import com.example.server_9dokme.inquiring.service.InquireService;
+import com.example.server_9dokme.member.repository.MemberRepository;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,10 +26,15 @@ public class InquireController {
     @Autowired
     private InquireService inquireService;
 
+    @Autowired
+    private MemberRepository memberRepository;
 
 
     @PostMapping("/inquire")
-    public ResponseEntity<Inquire> createInquire(@RequestBody InquireRequestDto inquireRequest, @RequestParam Long memberId) {
+    public ResponseEntity<Inquire> createInquire(@RequestBody InquireRequestDto inquireRequest) {
+
+        String memberEmail = FindLoginMember.getCurrentUserId();
+        Long memberId = memberRepository.findBySocialId(memberEmail).getMemberId();
 
         Inquire createdInquire = inquireService.createInquire(inquireRequest, memberId);
         return new ResponseEntity<>(createdInquire, HttpStatus.CREATED);
