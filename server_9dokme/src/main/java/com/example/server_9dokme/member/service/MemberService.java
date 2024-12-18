@@ -179,6 +179,8 @@ public class MemberService {
         return new PageImpl<>(myPostWrittenList, pageable, myQuestionList.getTotalElements());
     }
 
+    
+
 
 
 }

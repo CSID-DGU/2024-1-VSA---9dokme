@@ -12,7 +12,9 @@ import com.example.server_9dokme.common.dto.BaseResponse;
 import com.example.server_9dokme.common.dto.ErrorResponse;
 import com.example.server_9dokme.common.dto.SuccessResponse;
 import com.example.server_9dokme.member.dto.response.BookDto;
+import com.example.server_9dokme.member.entity.Keyword;
 import com.example.server_9dokme.member.entity.Member;
+import com.example.server_9dokme.member.repository.KeywordRepository;
 import com.example.server_9dokme.member.repository.MemberRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.servlet.http.HttpServletRequest;
@@ -39,6 +41,8 @@ public class BookController {
 
     @Autowired
     private MemberRepository memberRepository;
+    @Autowired
+    private KeywordRepository keywordRepository;
 
     @GetMapping("/books")
     @Operation(summary = "pdf 교재 상세조회", description = "pdf 교재 상세조회")
@@ -52,6 +56,7 @@ public class BookController {
         }
         if(bookRepository.existsById(id)==false){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "찾을 수 없는 pdf 교재입니다.");
+
         }
 
         BookCheckDto dto = bookService.checkBook(id,memberId);
@@ -65,7 +70,8 @@ public class BookController {
                                                        @RequestParam(required = false, defaultValue = "0", value = "page") int pageNo) {
 
         String memberEmail = FindLoginMember.getCurrentUserId();
-        Long memberId = memberRepository.findBySocialId(memberEmail).getMemberId();
+        Member member = memberRepository.findBySocialId(memberEmail);
+        Long memberId = member.getMemberId();
 
         Page<BookDto> dto = bookService.searchBook(title,pageNo, memberId);
 
@@ -73,7 +79,12 @@ public class BookController {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, "로그인 후 이용해주세요.");
         }
         if(dto.isEmpty()==true){
+            Keyword keyword = new Keyword();
+            keyword.setKeyword(title);
+            keyword.setMember(member);
+            keywordRepository.save(keyword);
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "찾을 수 없는 pdf 교재입니다.");
+
         }
 
 

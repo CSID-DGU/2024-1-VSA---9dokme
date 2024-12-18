@@ -7,6 +7,7 @@ import com.example.server_9dokme.book.dto.response.MyPageDto;
 import com.example.server_9dokme.book.dto.response.ProfileDto;
 import com.example.server_9dokme.bookmark.repository.BookmarkRepository;
 import com.example.server_9dokme.member.entity.Member;
+import com.example.server_9dokme.member.repository.KeywordRepository;
 import com.example.server_9dokme.member.repository.MemberRepository;
 import com.example.server_9dokme.book.dto.response.BookCheckDto;
 import com.example.server_9dokme.book.dto.response.BookWebViewDto;
@@ -49,6 +50,8 @@ public class BookService {
     private BookmarkRepository bookmarkRepository;
     @Autowired
     private SubscribeRepository subscribeRepository;
+    @Autowired
+    private KeywordRepository keywordRepository;
 
     public BookCheckDto checkBook(Long bookId,Long memberId){
 
