@@ -20,7 +20,9 @@ public class Notification extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long bookId;    //questionId, bookId
+    private String type;
+
+    private Long paramId;    //questionId, bookId
 
     private LocalDateTime expiredDate;
 
@@ -32,6 +34,4 @@ public class Notification extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name ="member_id")
     private Member member;
-
-
 }
