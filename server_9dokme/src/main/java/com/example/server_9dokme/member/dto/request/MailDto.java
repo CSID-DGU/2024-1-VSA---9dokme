@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class MailDto {
-    private String emailAddr;	// 수신 이메일
+    private String[] emailAddr;	// 수신 이메일
     private String emailTitle; // 메일 제목
     private String emailContent;// 메일 내용
 }
