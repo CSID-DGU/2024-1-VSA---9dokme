@@ -3,6 +3,7 @@ import com.example.server_9dokme.common.entity.BaseEntity;
 import com.example.server_9dokme.subscribe.entity.Subscribe;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Data
@@ -42,6 +43,8 @@ public class Member extends BaseEntity {
     private String authKey;
 
     private String billingKey;
+
+
 
     @Builder
     public Member(Long subscribeId, String userRole, String password, String nickName, String socialId, SocialType socialType, String customerKey, String authKey, String billingKey) {

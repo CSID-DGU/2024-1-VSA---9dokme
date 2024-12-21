@@ -4,10 +4,16 @@ import com.example.server_9dokme.book.dto.request.BookCreateRequest;
 import com.example.server_9dokme.book.dto.request.BookUpdateRequest;
 import com.example.server_9dokme.book.dto.response.BookInfoResponse;
 import com.example.server_9dokme.book.service.BookService;
+import com.example.server_9dokme.member.entity.Keyword;
+import com.example.server_9dokme.member.repository.KeywordRepository;
 import org.springframework.web.bind.annotation.RequestBody;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/admin")
@@ -16,10 +22,21 @@ public class AdminController {
 
     private final BookService bookService;
 
+
+
     // 책 정보(pdf) 등록
     @PostMapping("/books")
     public ResponseEntity<BookInfoResponse> createBook(@RequestBody BookCreateRequest request) {
         BookInfoResponse response = bookService.createBook(request);
+
+        String bookTitle = response.title();
+
+
+
+
+        //푸시알림 로직 처리
+        //send Notification(String[] sendMessageUserList, String bookTitle, String message)
+
         return ResponseEntity.ok(response);
     }
 

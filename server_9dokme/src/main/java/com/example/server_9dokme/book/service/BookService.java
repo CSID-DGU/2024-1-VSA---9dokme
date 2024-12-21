@@ -178,6 +178,10 @@ public class BookService {
                 request.rent()
         );
         bookRepository.save(book);
+
+
+
+
         return toResponse(book);
     }
 
