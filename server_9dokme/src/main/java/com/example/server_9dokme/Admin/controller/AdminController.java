@@ -6,6 +6,7 @@ import com.example.server_9dokme.book.dto.response.BookInfoResponse;
 import com.example.server_9dokme.book.service.BookService;
 import com.example.server_9dokme.member.entity.Keyword;
 import com.example.server_9dokme.member.repository.KeywordRepository;
+import jakarta.mail.MessagingException;
 import org.springframework.web.bind.annotation.RequestBody;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -26,16 +27,9 @@ public class AdminController {
 
     // 책 정보(pdf) 등록
     @PostMapping("/books")
-    public ResponseEntity<BookInfoResponse> createBook(@RequestBody BookCreateRequest request) {
+    public ResponseEntity<BookInfoResponse> createBook(@RequestBody BookCreateRequest request) throws MessagingException {
         BookInfoResponse response = bookService.createBook(request);
 
-        String bookTitle = response.title();
-
-
-
-
-        //푸시알림 로직 처리
-        //send Notification(String[] sendMessageUserList, String bookTitle, String message)
 
         return ResponseEntity.ok(response);
     }
