@@ -1,6 +1,7 @@
 package com.example.server_9dokme.common;
 
 import com.example.server_9dokme.member.entity.Member;
+import com.example.server_9dokme.member.entity.UserRole;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -28,7 +29,7 @@ public class PrincipalDetails implements UserDetails {
             @Override
             public String getAuthority() {
                 if(member!=null){
-                    return member.getUserRole();
+                    return member.getUserRole().toString();
                 }
                 return "없는 사용자입니다.";
             }

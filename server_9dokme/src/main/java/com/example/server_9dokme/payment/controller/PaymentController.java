@@ -1,5 +1,6 @@
 package com.example.server_9dokme.payment.controller;
 
+import com.example.server_9dokme.common.FindLoginMember;
 import com.example.server_9dokme.payment.dto.PaymentRequest;
 import com.example.server_9dokme.payment.entity.PaymentType;
 import com.example.server_9dokme.payment.service.PaymentService;
@@ -58,8 +59,12 @@ public class PaymentController {
     @PostMapping("/payments/complete")
     @ResponseBody
     public ResponseEntity<String> completePayment(@RequestBody PaymentRequest paymentRequest, @RequestParam(required = false) String imp_uid) {
+
+        String memberEmail = FindLoginMember.getCurrentUserId();
+
+
         try {
-            paymentService.verifyAndSavePayment(paymentRequest, imp_uid);
+            paymentService.verifyAndSavePayment(paymentRequest, imp_uid, memberEmail);
             return ResponseEntity.ok("Payment verified and saved successfully");
         } catch (Exception e) {
             return ResponseEntity.status(400).body("Payment verification failed: " + e.getMessage());

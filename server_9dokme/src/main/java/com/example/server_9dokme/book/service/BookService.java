@@ -1,5 +1,7 @@
 package com.example.server_9dokme.book.service;
 
+import com.example.server_9dokme.Notification.entity.Notification;
+import com.example.server_9dokme.Notification.repository.NotificationRepository;
 import com.example.server_9dokme.book.dto.request.BookCreateRequest;
 import com.example.server_9dokme.book.dto.request.BookUpdateRequest;
 import com.example.server_9dokme.book.dto.response.BookInfoResponse;
@@ -59,6 +61,8 @@ public class BookService {
     private SubscribeRepository subscribeRepository;
     @Autowired
     private KeywordRepository keywordRepository;
+    @Autowired
+    private NotificationRepository notificationRepository;
     @Autowired
     private JavaMailSender emailSender;
 
@@ -191,12 +195,18 @@ public class BookService {
         );
         bookRepository.save(book);
 
+
+
         // 키워드로 관련 멤버 검색
         List<Keyword> matchingKeywords = keywordRepository.findMatchingKeywords(book.getTitle());
 
         if(matchingKeywords.isEmpty()){
             return toResponse(book);
         }
+
+        List<Member> matchedMembers = matchingKeywords.stream()
+                .map(Keyword::getMember)
+                .collect(Collectors.toList());
 
         // 관련 멤버들의 socialId 가져오기
         List<String> socialIds = matchingKeywords.stream()
@@ -211,6 +221,20 @@ public class BookService {
         helper.setSubject("안녕하세요 9dokme입니다. 새로운 책이 입고 됐습니다! 사이트에 방문해 주셔서 확인해주세요!");
         helper.setText("저번에 검색하신 책 " + book.getTitle() + "이 입고 되었습니다. 확인해주세요");
         emailSender.send(mimeMessage);
+
+        for (Member member : matchedMembers) {
+            Notification notification = new Notification();
+            notification.setType("BOOK"); // 알림 타입
+            notification.setParamId(book.getBookId()); // 관련된 책 ID
+            notification.setExpiredDate(LocalDateTime.now().plusDays(7)); // 7일 후 만료
+            notification.setMessage("저번에 검색하신 책 '" + book.getTitle() + "'이 입고되었습니다. 확인해주세요!");
+            notification.setIsRead(false); // 읽지 않음 상태로 저장
+            notification.setMember(member); // 알림 받을 사용자
+
+            notificationRepository.save(notification);
+        }
+
+
 
 
 

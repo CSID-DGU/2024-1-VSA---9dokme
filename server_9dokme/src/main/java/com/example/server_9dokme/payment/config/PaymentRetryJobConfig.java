@@ -1,5 +1,6 @@
 package com.example.server_9dokme.payment.config;
 
+import com.example.server_9dokme.common.FindLoginMember;
 import com.example.server_9dokme.payment.dto.PaymentRequest;
 import com.example.server_9dokme.payment.entity.Payment;
 import com.example.server_9dokme.payment.entity.PaymentStatus;
@@ -29,6 +30,9 @@ public class PaymentRetryJobConfig {
 
     @Autowired
     private PaymentRepository paymentRepository;
+    @Autowired
+    private FindLoginMember findLoginMember;
+
 
     @Bean
     public Job retryPaymentJob(JobRepository jobRepository, Step retryPaymentStep) {

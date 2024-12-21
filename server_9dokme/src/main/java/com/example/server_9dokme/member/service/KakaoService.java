@@ -1,10 +1,8 @@
 package com.example.server_9dokme.member.service;
 
-import com.example.server_9dokme.member.dto.response.KakaoAccountDto;
-import com.example.server_9dokme.member.dto.response.KakaoTokenDto;
 import com.example.server_9dokme.member.dto.response.KakaoTokenResponseDto;
-import com.example.server_9dokme.member.entity.Account;
 import com.example.server_9dokme.member.entity.Member;
+import com.example.server_9dokme.member.entity.UserRole;
 import com.example.server_9dokme.member.repository.MemberRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -14,7 +12,6 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.nimbusds.jose.shaded.gson.JsonElement;
 import com.nimbusds.jose.shaded.gson.JsonObject;
 import com.nimbusds.jose.shaded.gson.JsonParser;
-import io.netty.handler.codec.http.HttpHeaderValues;
 import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 import lombok.Data;
@@ -30,7 +27,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.reactive.function.client.WebClient;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -165,6 +161,7 @@ public class KakaoService {
         if(duplicateMember==null){
             initMember.setSocialId(email);
             initMember.setNickName(nickName);
+            initMember.setUserRole(UserRole.NONE);
 
             memberRepository.save(initMember);
         }
