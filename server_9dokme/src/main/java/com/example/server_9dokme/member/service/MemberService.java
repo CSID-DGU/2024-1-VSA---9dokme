@@ -89,7 +89,7 @@ public class MemberService {
                 book.getCategory(),
                 book.getBookURL(),
                 book.getBookImage(),
-                bookmarkRepository.existsBookmarkByBook_BookIdAndMember_MemberId(book.getBookId(),member.getMemberId()))
+                true)
         );
 
 
