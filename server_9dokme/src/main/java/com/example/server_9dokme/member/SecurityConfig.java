@@ -52,10 +52,10 @@ public class SecurityConfig {
                 )
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // JWT 사용 시 STATELESS 설정
-                .logout(logout -> logout
-                        .logoutRequestMatcher(new AntPathRequestMatcher("/api/logout")) // 로그아웃 URL 지정
-                        .logoutSuccessUrl("/") // 로그아웃 성공 후 리다이렉트 URL
-                        .deleteCookies("JSESSIONID")) // 로그아웃 시 세션 쿠키 삭제
+//                .logout(logout -> logout
+//                        .logoutRequestMatcher(new AntPathRequestMatcher("/api/logout")) // 로그아웃 URL 지정
+//                        .logoutSuccessUrl("/") // 로그아웃 성공 후 리다이렉트 URL
+//                        .deleteCookies("JSESSIONID")) // 로그아웃 시 세션 쿠키 삭제
                 .addFilterBefore(new JWTFilter(jwtUtil, memberRepository), UsernamePasswordAuthenticationFilter.class) // JWT Filter 추가
                 .cors(cors -> cors.configurationSource(corsConfigurationSource())); // CORS 설정
 
