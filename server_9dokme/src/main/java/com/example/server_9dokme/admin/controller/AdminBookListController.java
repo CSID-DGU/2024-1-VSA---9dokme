@@ -26,7 +26,7 @@ public class AdminBookListController {
     AdminBookListService adminBookListService;
 
 
-    @GetMapping("/Admin/books")
+    @GetMapping("/admin/books")
     @Operation(description = "관리자 pdf 관리 리스트", summary = "관리자 pdf 수정 리스트 관리")
     public ResponseEntity<List<AdminBookDto>> getAdminPdfList(@RequestParam(defaultValue = "") String search){
 //        String socialId = session.getAttribute("email").toString();
