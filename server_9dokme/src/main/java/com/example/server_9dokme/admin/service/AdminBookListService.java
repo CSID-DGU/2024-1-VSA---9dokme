@@ -3,13 +3,9 @@ package com.example.server_9dokme.admin.service;
 import com.example.server_9dokme.admin.dto.AdminBookDto;
 import com.example.server_9dokme.book.entity.Book;
 import com.example.server_9dokme.book.repository.BookRepository;
-import com.example.server_9dokme.member.dto.request.MailDto;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

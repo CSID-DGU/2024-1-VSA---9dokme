@@ -1,9 +1,8 @@
-package com.example.server_9dokme.Admin.controller;
+package com.example.server_9dokme.admin.controller;
 
 import com.example.server_9dokme.admin.dto.AdminBookDto;
 import com.example.server_9dokme.admin.service.AdminBookListService;
 import io.swagger.v3.oas.annotations.Operation;
-import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +26,7 @@ public class AdminBookListController {
     AdminBookListService adminBookListService;
 
 
-    @GetMapping("/admin/books")
+    @GetMapping("/Admin/books")
     @Operation(description = "관리자 pdf 관리 리스트", summary = "관리자 pdf 수정 리스트 관리")
     public ResponseEntity<List<AdminBookDto>> getAdminPdfList(@RequestParam(defaultValue = "") String search){
 //        String socialId = session.getAttribute("email").toString();

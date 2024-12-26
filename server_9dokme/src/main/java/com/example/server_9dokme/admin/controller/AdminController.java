@@ -1,11 +1,9 @@
-package com.example.server_9dokme.Admin.controller;
+package com.example.server_9dokme.admin.controller;
 
 import com.example.server_9dokme.book.dto.request.BookCreateRequest;
 import com.example.server_9dokme.book.dto.request.BookUpdateRequest;
 import com.example.server_9dokme.book.dto.response.BookInfoResponse;
 import com.example.server_9dokme.book.service.BookService;
-import com.example.server_9dokme.member.entity.Keyword;
-import com.example.server_9dokme.member.repository.KeywordRepository;
 import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,9 +18,6 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/admin")
