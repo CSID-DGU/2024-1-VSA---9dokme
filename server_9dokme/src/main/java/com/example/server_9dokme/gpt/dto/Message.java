@@ -1,5 +1,3 @@
-// Message
-
 package com.example.server_9dokme.gpt.dto;
 
 import lombok.AllArgsConstructor;
